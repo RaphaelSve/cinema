@@ -19,6 +19,10 @@ public class TicketService {
         this.seanceService = seanceService;
     }
 
+    public List<Ticket> findTicketBySeance(Integer id){
+        return this.repository.findBySeanceId(id);
+    }
+
     public List<Ticket> getReservedTickets(Integer id) {
         return null;
     }

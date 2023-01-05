@@ -26,8 +26,8 @@ public class TicketController {
     }
 
     @GetMapping("{seances}")
-    public List<Ticket> getReservedTicket(@PathVariable String seances) {
-        return null;
+    public List<Ticket> getReservedTicket(@PathVariable Integer id) {
+        return service.findTicketBySeance(id);
     }
 
     @DeleteMapping("{id}")
