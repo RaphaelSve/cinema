@@ -1,17 +1,31 @@
 package fr.kira.formation.spring.cinema.tickets;
 
+import fr.kira.formation.spring.cinema.seances.Seance;
+import fr.kira.formation.spring.cinema.seances.SeanceService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class TicketService {
 
     private final TicketRepository repository;
+    private final SeanceService seanceService;
 
-    public TicketService(TicketRepository repository) {
+    public TicketService(TicketRepository repository, SeanceService seanceService) {
         this.repository = repository;
+        this.seanceService = seanceService;
     }
 
     public Ticket save(Ticket entity) {
+        Seance seance = seanceService.findById(entity.getSeance().getId());
+
+        if (seance.getNombrePlace() < entity.getNombrePlace()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pas assez de places disponibles");
+        }
+
+        seance.setNombrePlace(seance.getNombrePlace() - entity.getNombrePlace());
+        entity.setSeance(seance);
         return repository.save(entity);
     }
 

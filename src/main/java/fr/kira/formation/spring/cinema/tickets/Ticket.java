@@ -2,7 +2,6 @@ package fr.kira.formation.spring.cinema.tickets;
 
 import fr.kira.formation.spring.cinema.seances.Seance;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +23,4 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "seance_id")
     private Seance seance;
-
 }

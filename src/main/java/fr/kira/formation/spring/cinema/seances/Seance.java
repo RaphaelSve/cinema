@@ -6,19 +6,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "sceances")
+@Table(name = "seances")
 @Getter
 @Setter
 public class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Integer id;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
     private int nombrePlace;
 

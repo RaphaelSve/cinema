@@ -4,8 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.kira.formation.spring.cinema.acteurs.Acteur;
 import fr.kira.formation.spring.cinema.films.dto.FilmCompletDto;
 import fr.kira.formation.spring.cinema.films.dto.FilmReduitDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -15,6 +19,8 @@ public class FilmController {
 
     private final FilmService service;
     private final ObjectMapper mapper;
+
+    private final Logger logger = LoggerFactory.getLogger(FilmController.class);
 
 
     public FilmController(FilmService service, ObjectMapper mapper) {
@@ -57,6 +63,13 @@ public class FilmController {
                 .toList();
     }
 
+
+    @GetMapping("date/{date}")
+    public List<Film> findByDate(@PathVariable String date) {
+        List<Film> entities = this.service.findByDate(date);
+        return entities;
+    }
+
     /**
      * <h2>Retourne le film correspondant à l'id.</h2>
      *
@@ -75,6 +88,7 @@ public class FilmController {
      * @param id l'id du film à supprimer.
      */
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Integer id) {
         service.deleteById(id);
     }
