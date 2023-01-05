@@ -11,6 +11,7 @@ import fr.kira.formation.spring.cinema.seances.SeanceService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class FilmService {
     }
 
     public List<Film> findByDate(String date) {
-        List<Seance> seances = seanceRepository.findByDate(LocalDateTime.parse(date));
+        List<Seance> seances = seanceRepository.findByDate(LocalDate.parse(date));
         List<Film> films = new ArrayList<>();
         for(Seance seance : seances) {
             films.add(seance.getFilm());

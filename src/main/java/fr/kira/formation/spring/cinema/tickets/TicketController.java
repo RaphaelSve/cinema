@@ -2,6 +2,8 @@ package fr.kira.formation.spring.cinema.tickets;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("tickets")
 @CrossOrigin
@@ -21,6 +23,11 @@ public class TicketController {
     @GetMapping("{id}")
     public Ticket findById(@PathVariable Integer integer) {
         return service.findById(integer);
+    }
+
+    @GetMapping("{seances}")
+    public List<Ticket> getReservedTicket(@PathVariable String seances) {
+        return null;
     }
 
     @DeleteMapping("{id}")

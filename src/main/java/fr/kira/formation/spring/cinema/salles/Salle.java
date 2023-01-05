@@ -17,5 +17,4 @@ public class Salle {
     private int numero;
 
     private int capacite;
-
 }

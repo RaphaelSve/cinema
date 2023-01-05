@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class TicketService {
 
@@ -15,6 +17,10 @@ public class TicketService {
     public TicketService(TicketRepository repository, SeanceService seanceService) {
         this.repository = repository;
         this.seanceService = seanceService;
+    }
+
+    public List<Ticket> getReservedTickets(Integer id) {
+        return null;
     }
 
     public Ticket save(Ticket entity) {
